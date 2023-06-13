@@ -49,4 +49,10 @@ jobs:
       - name: Echo inputs
         run: |
           echo Release type: ${{ inputs.releaseType }}
-          echo Update latest links and docker images: ${{ inputs.updateLatest }}
+          echo Update latest links and docker images: ${{ inputs.updateLatest }} > vars.txt
+      - name: 'Upload Artifact'
+        uses: actions/upload-artifact@v3
+        with:
+          name: vars.txt
+          path: vars.txt
+          retention-days: 5
